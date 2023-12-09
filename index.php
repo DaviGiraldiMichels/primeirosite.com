@@ -1,5 +1,9 @@
 <?php
-const URL_SITE = "http://localhost/primeirosite.com/"
+const URL_SITE = "http://localhost/primeirosite.com/";
+require_once "mobile_device_detect.php";
+require_once "conectadb.php";
+
+$isMobile = mobile_device_detect();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -12,24 +16,28 @@ const URL_SITE = "http://localhost/primeirosite.com/"
     <link rel="stylesheet" href="<?php echo URL_SITE?>css/app.css">
 </head>
 <body>
-    <main>
-        <?php require_once "componentes/nav.php"?>
-        <div class="container">
+    <?php require_once "componentes/nav.php"?>
+    <main class="pb-5">
+        <div class="container<?php echo ($page == 'home' ? '-fluid p-0' : '')?>">
             <div class="row">
                 <?php
                 require_once "views/{$page}.php";
                 ?>
             </div>
         </div>
-        <?php require_once "componentes/footer.php"?>
     </main>
+    <?php require_once "componentes/footer.php"?>
 
 
 
 
 
 
-
+    <script>
+        const URL = '<?php echo URL_SITE?>'
+    </script>
     <script src="<?php echo URL_SITE?>js/bootstrap.bundle.min.js"></script>
+    <script src="<?php echo URL_SITE?>js/jquery-3.7.1.min.js"></script>
+    <script src="<?php echo URL_SITE?>js/app.js"></script>
 </body>
 </html>
